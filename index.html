@@ -5,6 +5,14 @@
   <link rel="icon" href="https://hypercreeper.github.io/Call-Mount/icon.png">
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
     <script src="https://chr15m.github.io/bugout/bugout.min.js" type="application/javascript"></script>
+  <script>
+    var roomHash = "call";
+function createRoom() {
+  roomHash = document.getElementById("roomcode").value;
+  document.getElementById("begin").remove();
+  location.hash = document.getElementById("roomcode").value;
+}
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <style>
