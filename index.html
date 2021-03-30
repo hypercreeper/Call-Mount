@@ -74,10 +74,9 @@
 </script>
   </div>
   <div style="position: absolute; height: 100%; width: 100%;" id="begin">
-    <input placeholder="Enter any room code" id="roomcode">&nbps;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="createRoom()">
+    <input placeholder="Enter any room code" id="roomcode">&nbps;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="var d = document.createElement('script'); d.src = 'script.js'; document.body.appendChild(d); document.getElementById('button').click();"><input type="button" onclick="createRoom()" id="button" hidden>
   </div>
   <video id="localVideo" autoplay muted></video>
   <video id="remoteVideo" autoplay></video>
-  <script src="script.js"></script>
 </body>
 </html>
