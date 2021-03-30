@@ -74,7 +74,7 @@
 </script>
   </div>
   <div style="position: absolute; height: 100%; width: 100%; background-color: white;" id="begin">
-    <input placeholder="Enter any room code" id="roomcode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="var d = document.createElement('script'); d.src = 'script.js'; document.body.appendChild(d); document.getElementById('button').click();"><input type="button" onclick="createRoom()" id="button" hidden>
+    <input placeholder="Enter any room code" id="roomcode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="var d = document.createElement('script'); d.src = 'script.js'; document.body.appendChild(d); document.getElementById('button').click();"><input type="button" onclick="setTimeout(createRoom, 1000);" id="button" hidden>
   </div>
   <video id="localVideo" autoplay muted></video>
   <video id="remoteVideo" autoplay></video>
