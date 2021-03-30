@@ -1,10 +1,4 @@
 
-var roomHash = "call";
-function createRoom() {
-  roomHash = document.getElementById("roomcode").value;
-  document.getElementById("begin").remove();
-  location.hash = document.getElementById("roomcode").value;
-}
 // TODO: Replace with your own channel ID
 const drone = new ScaleDrone('yiS12Ts5RdNhebyM');
 // Room name needs to be prefixed with 'observable-'
