@@ -1,11 +1,8 @@
 
 var roomHash = "call";
 var done = 0;
-  while(done != 1) {
-    //freeze the code to ensure the next part doesn't run until we have a code
-  }
 function createRoom() {
-  roomHash = documen.getElementById("roomcode");
+  roomHash = document.getElementById("roomcode");
   document.getElementById("begin").remove();
   done = 1;
 }
