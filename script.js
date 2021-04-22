@@ -45,7 +45,7 @@ function sendMessage(message) {
   });
 }
 
-function startWebRTC(isOfferer) {
+function startWebRTC(isOfferer, screenShare) {
   pc = new RTCPeerConnection(configuration);
 
   // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
@@ -73,14 +73,44 @@ function startWebRTC(isOfferer) {
 
   navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: true,
+	video: true,
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
+if(screenShare == true) {
+	document.getElementById("sharing").click();
+	if(document.getElementById("sharing").checked == true) {
+	navigator.mediaDevices.getDisplayMedia({
+    cursor: "motion"
+  }).then(stream => {
+    // Display your local video in #localVideo element
+    localVideo.srcObject = stream;
+    // Add your stream to be sent to the conneting peer
+    stream.getTracks().forEach(track => pc.addTrack(track, stream));
+  }, onError);
+  document.getElementById("shareScr").innerHTML = "Stop Sharing";
+	}
+  if(document.getElementById("sharing").checked == false) {
+  let tracks = stream.srcObject.getTracks();
 
+  tracks.forEach(track => track.stop());
+  videoElem.srcObject = null;
+	  navigator.mediaDevices.getUserMedia({
+    audio: true,
+	video: true,
+  }).then(stream => {
+    // Display your local video in #localVideo element
+    localVideo.srcObject = stream;
+    // Add your stream to be sent to the conneting peer
+    stream.getTracks().forEach(track => pc.addTrack(track, stream));
+  }, onError);
+  document.getElementById("shareScr").innerHTML = "Start Sharing";
+  }
+}
+}
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
@@ -103,7 +133,6 @@ function startWebRTC(isOfferer) {
       );
     }
   });
-}
 
 function localDescCreated(desc) {
   pc.setLocalDescription(
