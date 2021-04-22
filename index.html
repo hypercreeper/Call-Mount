@@ -10,6 +10,7 @@
 function createRoom() {
   roomHash = document.getElementById("roomcode").value;
   document.getElementById("begin").remove();
+  document.getElementById("shareScr").hidden = false;
   location.hash = document.getElementById("roomcode").value;
 }
   </script>
@@ -85,6 +86,9 @@ function createRoom() {
     <input placeholder="Enter any room code" style="top: 50%; left: 45%;" id="roomcode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Join" onclick="var d = document.createElement('script'); d.src = 'script.js'; document.body.appendChild(d); document.getElementById('button').click();" style="top: 50%; left: 55%;"><input type="button" onclick="setTimeout(createRoom(), 1000);" id="button" hidden>
   </div>
   <video id="localVideo" autoplay muted></video>
-  <video id="remoteVideo" autoplay></video>
+  <video id="remoteVideo" autoplay></video><br><br>
+  <br><br><br><br><br><br><button onclick="startWebRTC('', true)" id="shareScr" hidden>Share<br>Screen</button>
+  <input type="checkbox" id="sharing" hidden>
+  
 </body>
 </html>
