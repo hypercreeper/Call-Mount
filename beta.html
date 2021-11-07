@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Call Mount | Free Video Call Service</title>
+  <link rel="icon" href="https://hypercreeper.github.io/Call-Mount/icon.png">
+  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+    <script src="https://chr15m.github.io/bugout/bugout.min.js" type="application/javascript"></script>
+  <script>
+    var roomHash = "call";
+function createRoom() {
+  roomHash = document.getElementById("roomcode").value;
+  document.getElementById("begin").remove();
+  document.getElementById("shareScr").hidden = false;
+	document.getElementsByClassName("checkmark")[0].hidden = false;
+	document.getElementsByClassName("checkmark2")[0].hidden = false;
+}
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 0 50px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    video {
+      max-width: calc(50% - 100px);
+      margin: 0 50px;
+      box-sizing: border-box;
+      border-radius: 2px;
+      padding: 0;
+      box-shadow: rgba(156, 172, 172, 0.2) 0px 2px 2px, rgba(156, 172, 172, 0.2) 0px 4px 4px, rgba(156, 172, 172, 0.2) 0px 8px 8px, rgba(156, 172, 172, 0.2) 0px 16px 16px, rgba(156, 172, 172, 0.2) 0px 32px 32px, rgba(156, 172, 172, 0.2) 0px 64px 64px;
+    }
+    .copy {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="copy">Send your URL to a friend to start a video call</div>
+  <div>
+  <style>
+    pre { color: #000; white-space: pre-wrap; word-wrap: break-word; text-shadow: 0 0 10px #ccc; }
+    #input { border-bottom: 1px solid #ccc; background-color: #383838; padding: 0.25em; outline: 0; }
+    #input::before { content: "> "; }
+  </style>
+  <script>
+    function log(message) {
+      document.getElementById("log").textContent += message + "\n";
+    }
+  </script>
+<script>
+  log("Hello world!");
+
+  var b = Bugout("bugout-chat-tutorial");
+  b.on("seen", function(address) { log(address + " [ seen ]"); });
+  log(b.address() + " [ me ]");
+  
+  b.on("message", function(address, message) {
+    log(address + ": " + message);
+  });
+
+  document.getElementById("input").onkeydown = function(ev) {
+    if (ev.keyCode == 13) {
+      if (b.lastwirecount) {
+        b.send(ev.target.textContent);
+        ev.target.textContent = "";
+      }
+      ev.preventDefault();
+    }
+  }
+
+</script>
+  </div>
+  <div style="position: absolute; height: 100%; width: 100%; background-color: white;" id="begin">
+    <input placeholder="Enter any room code" style="top: 50%; left: 45%;" id="roomcode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Join" onclick="var d = document.createElement('script'); d.src = 'script-beta.js'; document.body.appendChild(d); document.getElementById('button').click();" style="top: 50%; left: 55%;"><input type="button" onclick="setTimeout(createRoom(), 1000);" id="button" hidden>
+  </div>
+  <video id="localVideo" autoplay muted></video>
+  <video id="remoteVideo" autoplay></video><br><br>
+  <br><br><br><br><br><br><button onclick="startWebRTC('', true)" id="shareScr" hidden></button>
+  <input type="checkbox" id="sharing" hidden>
+  <pre id="log"></pre>
+  <pre id="input" contenteditable="true"></pre>
+	<label class="container"><input type="checkbox" id="mic"><span class="checkmark" hidden></span></label>
+	<label class="container2"><input type="checkbox" id="cam"><span class="checkmark2" hidden></span></label>
+	<style>
+	#shareScr {
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	outline: none;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	border: none;
+	transition-duration: 0.1s;
+	background-color: white;
+	background-image: url(https://hypercreeper.github.io/Call-Mount/share.png);
+	}
+	#shareScr:hover {
+	background-color: #ccc;
+	}
+/* The container */
+.container {
+  display: block;
+  position: absolute;
+	top: 90%;
+	left: 45%;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+	transition-duration: 0.1s;
+	border-radius: 50%;
+  background-color: white;
+	background-image: url(https://hypercreeper.github.io/Call-Mount/mic_on.png);
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: red;
+	background-image: url(https://hypercreeper.github.io/Call-Mount/mic_off.png);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+</style>
+<style>
+/* The container */
+.container2 {
+  display: block;
+  position: absolute;
+	top: 90%;
+	left: 55%;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+	transition-duration: 0.1s;
+	border-radius: 50%;
+  background-color: white;
+	background-image: url(https://hypercreeper.github.io/Call-Mount/cam_on.png);
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark2 {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked ~ .checkmark2 {
+  background-color: red;
+	background-image: url(https://hypercreeper.github.io/Call-Mount/cam_off.png);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container2 input:checked ~ .checkmark2:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container2 .checkmark2:after {
+  left: 9px;
+  top: 5px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+</style>
+</body>
+</html>
