@@ -52,6 +52,12 @@ function createRoom() {
     pre { color: #000; white-space: pre-wrap; word-wrap: break-word; text-shadow: 0 0 10px #ccc; }
     #input { border-bottom: 1px solid #ccc; background-color: #383838; padding: 0.25em; outline: 0; }
     #input::before { content: "> "; }
+	.joinbutton:hover {
+	background-color: gray;
+	}
+	.joinbox:hover {
+	background-color: gray;
+	}
   </style>
   <script>
     function log(message) {
@@ -82,11 +88,13 @@ function createRoom() {
 </script>
   </div>
   <div style="position: absolute; height: 100%; width: 100%; background-color: white;" id="begin">
-    <input placeholder="Enter any room code" style="top: 50%; left: 45%;" id="roomcode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Join" onclick="var d = document.createElement('script'); d.src = 'script-beta.js'; document.body.appendChild(d); document.getElementById('button').click();" style="top: 50%; left: 55%;"><input type="button" onclick="setTimeout(createRoom(), 1000);" id="button" hidden>
+    <input placeholder="Enter any room code" style="top: 50%; left: 37%; position: absolute; height: 50px; width: 300px; border-radius: 200px; border-style: solid; border-color: lightgray;" id="roomcode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input class="joinbutton" type="button" value="Join" onclick="var d = document.createElement('script'); d.src = 'script-beta.js'; document.body.appendChild(d); document.getElementById('button').click();" style="top: 50%; left: 55%; border-radius: 200px; border-style: solid; border-color: lightgray; height: 56px; width: 73px; position: absolute;">
+	<input class="joinbox" type="button" onclick="setTimeout(createRoom(), 1000);" id="button" hidden>
   </div>
-  <video id="localVideo" autoplay muted></video>
-  <video id="remoteVideo" autoplay></video><br><br>
-  <br><br><br><br><br><br><button onclick="startWebRTC('', true)" id="shareScr" hidden></button>
+  <video id="localVideo" style="z-index: -1;" autoplay muted></video>
+  <video id="remoteVideo" style="z-index: -1;"autoplay></video><br><br>
+  <br><br><br><br><br><br><button onclick="startWebRTC('', true)" id="shareScr" hidden></button><button onclick="" id="endcall" hidden></button>
   <input type="checkbox" id="sharing" hidden>
   <pre id="log"></pre>
   <pre id="input" contenteditable="true"></pre>
@@ -105,6 +113,19 @@ function createRoom() {
 	transition-duration: 0.1s;
 	background-color: white;
 	background-image: url(https://hypercreeper.github.io/Call-Mount/share.png);
+	}
+	#endcall {
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	outline: none;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	border: none;
+	transition-duration: 0.1s;
+	background-color: white;
+	background-image: url(https://hypercreeper.github.io/Call-Mount/end_call.png);
 	}
 	#shareScr:hover {
 	background-color: #ccc;
